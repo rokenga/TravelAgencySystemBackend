@@ -63,7 +63,6 @@ public class DestinationController : BaseController
         return Ok(destinations);
     }
     
-    [Authorize(Policy = PolicyNames.ClientRole)]
     [HttpGet("{destinationId:guid}/Records")]
     public IActionResult GetAllRecordsForDestination(Guid destinationId)
     {
