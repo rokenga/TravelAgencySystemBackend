@@ -55,8 +55,7 @@ public class DestinationController : BaseController
         return Ok(_destinationService.DeleteDestination(id));
     }
     
-    [Authorize(Policy = PolicyNames.ClientRole)]
-    [HttpGet("/{destinationId}/Records/{recordId}/Comments")]
+    [HttpGet("{destinationId}/Records/{recordId}/Comments")]
     public IActionResult GetDestination(Guid destinationId, Guid recordId)
     {
         var destinations = _destinationService.GetDestinationWithSpecificRecordAndComments(recordId, destinationId);

@@ -23,7 +23,6 @@ public class CommentController : BaseController
         return Ok(_commentService.GetCommentById(id));
     }
     
-    [Authorize(Policy = PolicyNames.ClientRole)]
     [HttpGet]
     public IActionResult Get()
     {
