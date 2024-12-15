@@ -55,7 +55,7 @@ public class DestinationController : BaseController
         return Ok(_destinationService.DeleteDestination(id));
     }
     
-    [HttpGet("{destinationId}/Records/{recordId}/Comments")]
+    [HttpGet("{destinationId:guid}/Records/{recordId:guid}")]
     public IActionResult GetDestination(Guid destinationId, Guid recordId)
     {
         var destinations = _destinationService.GetDestinationWithSpecificRecordAndComments(recordId, destinationId);
