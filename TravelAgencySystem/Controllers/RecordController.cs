@@ -30,7 +30,7 @@ public class RecordController : BaseController
     
     [Authorize(Policy = PolicyNames.AgentRole)]
     [HttpPost]
-    public IActionResult Post(RecordRequest request)
+    public IActionResult Post([FromBody] RecordRequest request)
     {
         var res = _recordService.AddRecord(request, User.FindFirstValue(ClaimTypes.NameIdentifier));
         return CreatedAtAction(nameof(Get), new { id = res }, res);
@@ -38,7 +38,7 @@ public class RecordController : BaseController
     
     [Authorize(Policy = PolicyNames.AgentRole)]
     [HttpPut("{id:guid}")]
-    public IActionResult Put(Guid id, RecordRequest request)
+    public IActionResult Put(Guid id, [FromBody] RecordRequest request)
     {
         var agentId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var res = _recordService.EditRecord(id, request, agentId);

@@ -31,7 +31,7 @@ public class CommentController : BaseController
     
     [Authorize(Policy = PolicyNames.ClientRole)]
     [HttpPost]
-    public IActionResult Post(CommentRequest request)
+    public IActionResult Post([FromBody] CommentRequest request)
     {
         var res = _commentService.AddComment(request, User.FindFirstValue(ClaimTypes.NameIdentifier));
         return CreatedAtAction(nameof(Get), new { id = res }, res);
@@ -39,7 +39,7 @@ public class CommentController : BaseController
     
     [Authorize(Policy = PolicyNames.ClientRole)]
     [HttpPut("{id:guid}")]
-    public IActionResult Put(Guid id, CommentRequest request)
+    public IActionResult Put(Guid id, [FromBody] CommentRequest request)
     {
         var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var res = _commentService.EditComment(id, request, clientId);
